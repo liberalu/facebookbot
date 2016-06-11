@@ -1,0 +1,23 @@
+{
+  "name": "liberalu/facebookbot",
+  "description": "Facebook bot. Auto reply message, show products, show menu, send message",
+  "keywords": ["facebook bot"],
+  "homepage": "http://github.com/liberalu/facebookbot",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Evaldas Kazlauskas",
+      "email": "kazlauskas.evaldas@gmail.com",
+      "homepage": "http://github.com/liberalu"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0",
+    "guzzlehttp/psr7" : "*",
+    "guzzlehttp/guzzle" : "*"
+  },
+  "autoload": {
+    "psr-4": {"FacebookBot\\": "src/FacebookBot"}
+  }
+}
