@@ -95,6 +95,8 @@ class Request
             $this->parseTextMessage($content);
         } elseif (!empty($content['postback']['payload'])) {
             $this->parsePayloadMessage($content);
+        } else {
+            throw new \RuntimeException('Callback message type doesn\'t exist');
         }
     }
 
