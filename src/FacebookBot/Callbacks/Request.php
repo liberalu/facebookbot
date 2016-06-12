@@ -20,9 +20,10 @@ class Request
     private $message;
 
 
-    const PAYLOAD = 'payload';
-    const TEXT = 'text';
+    const PAYLOAD    = 'payload';
+    const TEXT       = 'text';
     const ATTACHMENT = 'attachment';
+    const DELIVERY   = 'delivery';
 
     /**
      * InputMessage constructor.
@@ -95,6 +96,8 @@ class Request
             $this->parseTextMessage($content);
         } elseif (!empty($content['postback']['payload'])) {
             $this->parsePayloadMessage($content);
+        } elseif (!empty($content['delivery'])) {
+            $this->parseDeliveryMessage($content);
         } else {
             throw new \RuntimeException('Callback message type doesn\'t exist');
         }
@@ -145,11 +148,23 @@ class Request
      *
      * @param $content
      */
-    private function parseTextMessage($content)
+    private function parseTextMessage(array $content)
     {
         $this->message->setTextMessage($content['message']['text']);
         $this->message->setSeq($content['message']['seq']);
         $this->message->setType(self::TEXT);
+    }
+
+
+    /**
+     * Parse delivery message text
+     *
+     * @param $content
+     */
+    private function parseDeliveryMessage(array $content)
+    {
+        $this->message->setType(self::DELIVERY);
+        $this->message->setSeq($content['delivery']['seq']);
     }
 
 }
