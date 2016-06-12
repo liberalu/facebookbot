@@ -1,14 +1,13 @@
 <?php
 
-namespace FacebookBot;
-
+namespace FacebookBot\Callbacks;
 
 /**
- * Class RequestMessage
+ * Class Message
  *
  * @package FacebookBot
  */
-class RequestMessage
+class Message
 {
 
     private $textMessage = '';
@@ -18,6 +17,8 @@ class RequestMessage
     private $payload     = null;
     private $attachment  = null;
     private $seq         = null;
+    private $pageId      = null;
+    private $recipientId = null;
 
 
     /**
@@ -113,7 +114,7 @@ class RequestMessage
     /**
      * @param string $attachment
      */
-    public function setAtthement($attachment)
+    public function setAttachment($attachment)
     {
         $this->attachment = $attachment;
     }
@@ -144,5 +145,42 @@ class RequestMessage
     {
         return $this->seq;
     }
+
+
+    /**
+     * @param int $pageId
+     */
+    public function setPageId($pageId)
+    {
+        $this->pageId = $pageId;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getPageId()
+    {
+        return $this->pageId;
+    }
+
+
+    /**
+     * @param int $recipientId
+     */
+    public function setRecipientId($recipientId)
+    {
+        $this->recipientId = $recipientId;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getRecipientId()
+    {
+        return $this->recipientId;
+    }
+
 
 }

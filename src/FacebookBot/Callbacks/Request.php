@@ -1,6 +1,6 @@
 <?php
 
-namespace FacebookBot;
+namespace FacebookBot\Callbacks;
 
 /**
  * Class Request
@@ -34,7 +34,7 @@ class Request
     {
         $this->content   = $content;
         $this->apiSecret = $apiSecret;
-        $this->message   = new RequestMessage();
+        $this->message   = new Message();
         $this->parseMessage($content);
     }
 
@@ -59,7 +59,7 @@ class Request
     /**
      * Get incoming message object
      *
-     * @return \FacebookBot\RequestMessage
+     * @return \FacebookBot\Callbacks\Message
      */
     public function getMessage()
     {
@@ -108,6 +108,8 @@ class Request
     {
         $this->message->setSenderId($content['messaging'][0]['sender']['id']);
         $this->message->setTimestamp($content['time']);
+        $this->message->setRecipientId($content['messaging'][0]['recipient']['id']);
+        $this->message->setPageId($content['id']);
     }
 
 
