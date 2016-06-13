@@ -50,4 +50,28 @@ class FacebookBot
     }
 
 
+    /**
+     * Send message to Facebook
+     *
+     * @param MessageInterface $message message object
+     *
+     * @return bool
+     */
+    public function sendMessage(MessageInterface $message)
+    {
+        $request = new Psr7\Request(
+            'POST',
+            $this->fbApiUrl.'/messages?access_token='.$this->token,
+            [
+                'Content-Type' => 'application/json',
+            ],
+            \GuzzleHttp\json_encode($message->getMessage())
+        );
+
+        $client  = new Client();
+        $response = $client->send($request);
+
+        return $response->getStatusCode() === 200;
+    }
+
 }
