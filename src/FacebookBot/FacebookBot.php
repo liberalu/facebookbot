@@ -2,9 +2,16 @@
 
 namespace FacebookBot;
 
+use FacebookBot\Send\MessageInterface;
+
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
 
+/**
+ * Class FacebookBot
+ *
+ * @package FacebookBot
+ */
 class FacebookBot
 {
 
@@ -59,6 +66,7 @@ class FacebookBot
      */
     public function sendMessage(MessageInterface $message)
     {
+        $message->validate();
         $request = new Psr7\Request(
             'POST',
             $this->fbApiUrl.'/messages?access_token='.$this->token,

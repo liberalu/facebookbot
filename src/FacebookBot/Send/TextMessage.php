@@ -45,4 +45,16 @@ class TextMessage extends AbstractMessage implements MessageInterface
         return $this->text;
     }
 
+
+    /**
+     * Validate message
+     */
+    public function validate()
+    {
+        parent::validate();
+        if (!$this->getText()) {
+            throw new \RuntimeException('Text is not defined');
+        }
+    }
+
 }

@@ -55,4 +55,15 @@ abstract class AbstractMessage
         return $content;
     }
 
+
+    /**
+     * Validate message
+     */
+    protected function validate()
+    {
+        if (!$this->getRecipientId()) {
+            throw new \RuntimeException('Recipient id is not defined');
+        }
+    }
+
 }
