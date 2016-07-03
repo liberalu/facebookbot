@@ -4,11 +4,11 @@ namespace FacebookBot\Send;
 
 
 /**
- * Interface MessageInterface
+ * Interface InterfaceMessage
  *
  * @package FacebookBot\Send
  */
-Interface MessageInterface
+Interface InterfaceMessage
 {
 
     /**

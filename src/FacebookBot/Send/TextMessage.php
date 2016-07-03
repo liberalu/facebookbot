@@ -2,7 +2,7 @@
 
 namespace FacebookBot\Send;
 
-class TextMessage extends AbstractMessage implements MessageInterface
+class TextMessage extends AbstractMessage implements InterfaceMessage
 {
 
     /** @var string */

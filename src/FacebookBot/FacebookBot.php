@@ -2,7 +2,7 @@
 
 namespace FacebookBot;
 
-use FacebookBot\Send\MessageInterface;
+use FacebookBot\Send\InterfaceMessage;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
@@ -60,11 +60,11 @@ class FacebookBot
     /**
      * Send message to Facebook
      *
-     * @param MessageInterface $message message object
+     * @param InterfaceMessage $message message object
      *
      * @return bool
      */
-    public function sendMessage(MessageInterface $message)
+    public function sendMessage(InterfaceMessage $message)
     {
         $message->validate();
         $request = new Psr7\Request(
