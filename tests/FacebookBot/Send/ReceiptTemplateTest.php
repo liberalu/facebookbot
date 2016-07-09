@@ -68,8 +68,8 @@ class ReceiptTemplateTest extends \PHPUnit_Framework_TestCase
             'order_url' => 'http://order.url',
             'timestamp' => 4123513512,
             'address' => [
-                'street1' => 'Street 1',
-                'street2' => 'Street 2',
+                'street_1' => 'Street 1',
+                'street_2' => 'Street 2',
                 'city' => 'City',
                 'postal_code' => '12345a',
                 'state' => 'State',
