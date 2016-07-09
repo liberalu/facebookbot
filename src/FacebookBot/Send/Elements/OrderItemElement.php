@@ -143,7 +143,7 @@ class OrderItemElement
         ];
 
         if (!empty($this->getSubTitle())) {
-            $orderItem['subTitle'] = $this->getSubTitle();
+            $orderItem['subtitle'] = $this->getSubTitle();
         }
 
         if (!empty($this->getQuantity())) {
