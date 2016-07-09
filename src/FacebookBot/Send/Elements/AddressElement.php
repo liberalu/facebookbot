@@ -162,8 +162,8 @@ class AddressElement
     public function getAddress()
     {
         $address = [
-            'street1'     => $this->getStreet(),
-            'street2'     => $this->getStreet2(),
+            'street_1'     => $this->getStreet(),
+            'street_2'     => $this->getStreet2(),
             'city'        => $this->getCity(),
             'postal_code' => $this->getPostalCode(),
             'state'       => $this->getState(),

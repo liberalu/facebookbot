@@ -233,6 +233,7 @@ class ReceiptTemplate extends AbstractMessage implements InterfaceMessage
             'payment_method' => $this->getPaymentMethod(),
             'elements'       => $elements,
             'summary'        => $this->getSummary()->getSummary(),
+            'address'        => $this->getAddress()->getAddress(),
         ];
 
         if (!empty($this->getTimestamp())) {
@@ -248,7 +249,7 @@ class ReceiptTemplate extends AbstractMessage implements InterfaceMessage
             $payload['adjustments'] = [];
             /** @var AdjustmentElement $adjustment */
             foreach ($adjustments as $adjustment) {
-                $payload['adjustments'] = $adjustment->getAsjustment();
+                $payload['adjustments'][] = $adjustment->getAsjustment();
             }
         }
 

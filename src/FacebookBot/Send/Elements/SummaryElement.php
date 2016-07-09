@@ -117,8 +117,8 @@ class SummaryElement
             $summary['shipping_cost'] = $this->getShippingCost();
         }
 
-        if (!empty($this->getTotalCost())) {
-            $summary['total_cost'] = $this->getTotalCost();
+        if (!empty($this->getTotalTax())) {
+            $summary['total_tax'] = $this->getTotalTax();
         }
 
         return $summary;
