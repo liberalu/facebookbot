@@ -46,7 +46,7 @@ class OrderItemElementTest extends \PHPUnit_Framework_TestCase
         $expected = [
             'title' => 'Title',
             'price' => 21.5,
-            'subTitle' => 'Subtitle',
+            'subtitle' => 'Subtitle',
             'quantity' => 4,
             'currency' => 'EUR',
             'image_url' => 'http://image.url',

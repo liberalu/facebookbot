@@ -78,7 +78,7 @@ class ReceiptTemplateTest extends \PHPUnit_Framework_TestCase
             'elements' => [
                 [
                     'title' => 'Title',
-                    'subTitle' => 'Subtitle',
+                    'subtitle' => 'Subtitle',
                     'quantity' => 4,
                     'price' => 21.5,
                     'currency' => 'EUR',
