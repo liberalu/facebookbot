@@ -5,7 +5,7 @@ namespace FacebookBot;
 use FacebookBot\Send\InterfaceMessage;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Request;
 
 /**
  * Class FacebookBot
@@ -18,8 +18,11 @@ class FacebookBot
     /** @var string $token fb bot token */
     private $token;
 
+    /** @var string */
     private $fbApiUrl = 'https://graph.facebook.com/v2.6/me';
 
+    /** @var Client */
+    private $client;
 
     /**
      * FacebookBot constructor
@@ -28,7 +31,8 @@ class FacebookBot
      */
     public function __construct($token)
     {
-        $this->token = $token;
+        $this->token  = $token;
+        $this->client = new Client();
     }
 
 
@@ -40,12 +44,11 @@ class FacebookBot
     public function isTokenValid()
     {
         $tokenValidation = false;
-        $request = new Psr7\Request('POST', $this->fbApiUrl.'/subscribed_apps?access_token='.$this->token);
-        $client  = new Client();
+        $request = new Request('POST', $this->fbApiUrl.'/subscribed_apps?access_token='.$this->token);
 
         try {
-            $response = $client->send($request);
-            $result = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
+            $response = $this->client->send($request);
+            $result = \json_decode($response->getBody()->getContents(), true);
             if (isset($result['success']) && (int) $result['success'] === 1) {
                 $tokenValidation = true;
             }
@@ -67,19 +70,31 @@ class FacebookBot
     public function sendMessage(InterfaceMessage $message)
     {
         $message->validate();
-        $request = new Psr7\Request(
+        $request = new Request(
             'POST',
             $this->fbApiUrl.'/messages?access_token='.$this->token,
             [
                 'Content-Type' => 'application/json',
             ],
-            \GuzzleHttp\json_encode($message->getMessage())
+            \json_encode($message->getMessage())
         );
 
-        $client  = new Client();
-        $response = $client->send($request);
+        $response = $this->client->send($request);
 
         return $response->getStatusCode() === 200;
     }
+
+
+    /**
+     * Set client
+     *
+     * @param Client $client
+     */
+    public function setClient($client)
+    {
+        $this->client = $client;
+    }
+
+
 
 }
