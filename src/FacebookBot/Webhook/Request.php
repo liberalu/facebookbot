@@ -1,6 +1,6 @@
 <?php
 
-namespace FacebookBot\Callbacks;
+namespace FacebookBot\Webhook;
 
 /**
  * Class Request
@@ -60,7 +60,7 @@ class Request
     /**
      * Get incoming message object
      *
-     * @return \FacebookBot\Callbacks\Message
+     * @return \FacebookBot\Webhook\Message
      */
     public function getMessage()
     {
@@ -99,7 +99,7 @@ class Request
         } elseif (!empty($content['delivery'])) {
             $this->parseDeliveryMessage($content);
         } else {
-            throw new \RuntimeException('Callback message type doesn\'t exist');
+            throw new \RuntimeException('Webhook message type doesn\'t exist');
         }
     }
 

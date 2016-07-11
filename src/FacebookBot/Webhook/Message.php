@@ -1,6 +1,6 @@
 <?php
 
-namespace FacebookBot\Callbacks;
+namespace FacebookBot\Webhook;
 
 /**
  * Class Message
