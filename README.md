@@ -1,5 +1,7 @@
 #Facebook Messenger Bot library for PHP
 
+[![Build Status](https://travis-ci.org/liberalu/facebookbot.svg?branch=master)](https://travis-ci.org/liberalu/facebookbot)
+
 PHP client for Facebook Messenger Bot API.
 
 You can read more [official documentation](https://developers.facebook.com/docs/messenger-platform) about API.
