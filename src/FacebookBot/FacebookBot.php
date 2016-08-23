@@ -69,21 +69,21 @@ class FacebookBot
      */
     public function sendMessage(InterfaceMessage $message)
     {
-        $message->validate();
-        $request = new Request(
-            'POST',
-            $this->fbApiUrl.'/messages?access_token='.$this->token,
-            [
-                'Content-Type' => 'application/json',
-            ],
-            \json_encode($message->getMessage())
-        );
-
-        $response = $this->client->send($request);
-
-        return $response->getStatusCode() === 200;
+        return $this->send($message, 'messages');
     }
 
+
+    /**
+     * Send settings to Facebook
+     *
+     * @param InterfaceMessage $message settings object
+     *
+     * @return bool
+     */
+    public function sendSettings(InterfaceMessage $message)
+    {
+        return $this->send($message, 'thread_settings');
+    }
 
     /**
      * Set client
@@ -95,6 +95,27 @@ class FacebookBot
         $this->client = $client;
     }
 
+    /**
+     * Send request to Facebook
+     *
+     * @param InterfaceMessage $message message object
+     *
+     * @return bool
+     */
+    private function send(InterfaceMessage $message, $endPoint)
+    {
+        $message->validate();
+        $request = new Request(
+            'POST',
+            $this->fbApiUrl.'/'.$endPoint.'?access_token='.$this->token,
+            [
+                'Content-Type' => 'application/json',
+            ],
+            \json_encode($message->getMessage())
+        );
 
+        $response = $this->client->send($request);
 
+        return $response->getStatusCode() === 200;
+    }
 }
